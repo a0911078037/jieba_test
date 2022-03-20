@@ -1,2 +1,2 @@
-# jieba_test
-語言處理
+# 使用 jieba 進行語言處理
+
