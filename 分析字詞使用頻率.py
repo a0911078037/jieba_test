@@ -17,12 +17,12 @@ text = open('data/news1.txt', 'r', encoding='utf-8').read()
 jieba.set_dictionary('dict/dict.txt.big.txt')
 with open('dict/stopWord_cloud.txt', 'r', encoding='utf-8-sig') as f:
     stops = f.read().split('\n')
-    
+
 terms = []
 for t in jieba.cut(text, cut_all=False):
-    if t not in stops:
+    if t not in stops and t != '\n':
         terms.append(t)
-        
+
 diction = Counter(terms)
 
 font = '_data/msyh.ttc'
@@ -30,7 +30,7 @@ mask = np.array(Image.open('_data/heart.png'))
 wordcloud = WordCloud(font_path=font, mask=mask)
 wordcloud.generate_from_frequencies(frequencies=diction)
 
-plt.figure(figsize=(6,6))
+plt.figure(figsize=(6, 6))
 plt.imshow(wordcloud)
 plt.axis('off')
 plt.show()
